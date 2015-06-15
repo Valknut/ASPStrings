@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE tank_platoon SYSTEM "TPlatoon.dtd">
+<tank_platoon att_id_tp="asd">
+  <name>moly</name>
+  <nation>asdf</nation>
+  <rating>asdf</rating>
+  <personal_win_rate />asdf<tropheys><trophey att_id_trophey="afd" att_id_league="fds"><year>asdf</year><place>asdf</place><league><league_name l_type="asdf">asdf</league_name><league_country>asdf</league_country></league></trophey></tropheys><crew /></tank_platoon>

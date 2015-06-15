@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TPlatoonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Guns">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gun_penetration" Type="Int32" />
+    <Property Name="ammo_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Tanks" Relationship="Self.FK_Tanks_Guns" FromRole="Guns" ToRole="Tanks" />
+  </EntityType>
+  <EntityType Name="Leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="league_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="league_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="league_country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tropheys" Relationship="Self.FK_Tropheys_Leagues" FromRole="Leagues" ToRole="Tropheys" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="gender" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Name="platoon_position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="g_strat_pos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personal_win_rate" Type="Double" />
+    <Property Name="tank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tank_platoon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tank_Platoons" Relationship="Self.FK_Players_Tank_Platoons" FromRole="Players" ToRole="Tank_Platoons" />
+    <NavigationProperty Name="Tanks" Relationship="Self.FK_Players_Tanks" FromRole="Players" ToRole="Tanks" />
+    <Property Name="day" Type="Int32" />
+    <Property Name="month" Type="Int32" />
+    <Property Name="birth_year" Type="Int32" />
+    <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tank_Platoons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="win_rate" Type="Double" />
+    <Property Name="rating" Type="Int32" />
+    <Property Name="nation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Players" Relationship="Self.FK_Players_Tank_Platoons" FromRole="Tank_Platoons" ToRole="Players" />
+    <NavigationProperty Name="Tropheys" Relationship="Self.FK_Tropheys_Tank_Platoons" FromRole="Tank_Platoons" ToRole="Tropheys" />
+  </EntityType>
+  <EntityType Name="Tanks">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tank_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tier" Type="Int32" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="top_speed" Type="Double" />
+    <Property Name="tank_nation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Guns" Relationship="Self.FK_Tanks_Guns" FromRole="Tanks" ToRole="Guns" />
+    <NavigationProperty Name="Players" Relationship="Self.FK_Players_Tanks" FromRole="Tanks" ToRole="Players" />
+  </EntityType>
+  <EntityType Name="Tropheys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="year" Type="Int32" />
+    <Property Name="place" Type="Int32" />
+    <Property Name="league" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tank_platoon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Leagues" Relationship="Self.FK_Tropheys_Leagues" FromRole="Tropheys" ToRole="Leagues" />
+    <NavigationProperty Name="Tank_Platoons" Relationship="Self.FK_Tropheys_Tank_Platoons" FromRole="Tropheys" ToRole="Tank_Platoons" />
+  </EntityType>
+  <Association Name="FK_Tanks_Guns">
+    <End Role="Guns" Type="Self.Guns" Multiplicity="1" />
+    <End Role="Tanks" Type="Self.Tanks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guns">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tanks">
+        <PropertyRef Name="gun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tropheys_Leagues">
+    <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+    <End Role="Tropheys" Type="Self.Tropheys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Leagues">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tropheys">
+        <PropertyRef Name="league" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Tank_Platoons">
+    <End Role="Tank_Platoons" Type="Self.Tank_Platoons" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tank_Platoons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="tank_platoon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Tanks">
+    <End Role="Tanks" Type="Self.Tanks" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tanks">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="tank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tropheys_Tank_Platoons">
+    <End Role="Tank_Platoons" Type="Self.Tank_Platoons" Multiplicity="1" />
+    <End Role="Tropheys" Type="Self.Tropheys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tank_Platoons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tropheys">
+        <PropertyRef Name="tank_platoon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TPlatoonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Guns" EntityType="Self.Guns" />
+    <EntitySet Name="Leagues" EntityType="Self.Leagues" />
+    <EntitySet Name="Players" EntityType="Self.Players" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tank_Platoons" EntityType="Self.Tank_Platoons" />
+    <EntitySet Name="Tanks" EntityType="Self.Tanks" />
+    <EntitySet Name="Tropheys" EntityType="Self.Tropheys" />
+    <AssociationSet Name="FK_Tanks_Guns" Association="Self.FK_Tanks_Guns">
+      <End Role="Guns" EntitySet="Guns" />
+      <End Role="Tanks" EntitySet="Tanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tropheys_Leagues" Association="Self.FK_Tropheys_Leagues">
+      <End Role="Leagues" EntitySet="Leagues" />
+      <End Role="Tropheys" EntitySet="Tropheys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Tank_Platoons" Association="Self.FK_Players_Tank_Platoons">
+      <End Role="Tank_Platoons" EntitySet="Tank_Platoons" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Tanks" Association="Self.FK_Players_Tanks">
+      <End Role="Tanks" EntitySet="Tanks" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tropheys_Tank_Platoons" Association="Self.FK_Tropheys_Tank_Platoons">
+      <End Role="Tank_Platoons" EntitySet="Tank_Platoons" />
+      <End Role="Tropheys" EntitySet="Tropheys" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TPlatoonModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TPlatoonModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

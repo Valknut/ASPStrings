@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE tank_platoon SYSTEM "TPlatoon.dtd">
+<tank_platoon att_id_tp="thy">
+  <name>xVm</name>
+  <nation>Германия</nation>
+  <rating>5</rating>
+  <personal_win_rate />50,21<tropheys><trophey att_id_trophey="t1" att_id_league="l2"><year>1999</year><place>3</place><league><league_name l_type="Професионална">WWOTF</league_name><league_country>Германия</league_country></league></trophey></tropheys><crew /></tank_platoon>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TPlatoon2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Guns">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gun_penetration" Type="varchar" MaxLength="50" />
+    <Property Name="ammo_type" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="league_name" Type="varchar" MaxLength="50" />
+    <Property Name="league_type" Type="varchar" MaxLength="50" />
+    <Property Name="league_country" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" />
+    <Property Name="last_name" Type="varchar" MaxLength="50" />
+    <Property Name="age" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="nchar" MaxLength="10" />
+    <Property Name="platoon_position" Type="varchar" MaxLength="50" />
+    <Property Name="g_strat_pos" Type="varchar" MaxLength="50" />
+    <Property Name="personal_win_rate" Type="varchar" MaxLength="50" />
+    <Property Name="tank" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tank_platoon" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="day" Type="varchar" MaxLength="50" />
+    <Property Name="month" Type="varchar" MaxLength="50" />
+    <Property Name="birth_year" Type="varchar" MaxLength="50" />
+    <Property Name="nickname" Type="varchar" MaxLength="50" />
+    <Property Name="country" Type="varchar" MaxLength="50" />
+    <Property Name="colour" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tank_Platoons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="win_rate" Type="varchar" MaxLength="50" />
+    <Property Name="rating" Type="varchar" MaxLength="50" />
+    <Property Name="nation" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tanks">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tank_name" Type="varchar" MaxLength="50" />
+    <Property Name="tier" Type="varchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="top_speed" Type="varchar" MaxLength="50" />
+    <Property Name="tank_nation" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="varchar" MaxLength="50" />
+    <Property Name="gun" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tropheys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="year" Type="varchar" MaxLength="50" />
+    <Property Name="place" Type="varchar" MaxLength="50" />
+    <Property Name="league" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tank_platoon" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Players_Tank_Platoons">
+    <End Role="Tank_Platoons" Type="Self.Tank_Platoons" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tank_Platoons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="tank_platoon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Tanks">
+    <End Role="Tanks" Type="Self.Tanks" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tanks">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="tank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tanks_Guns">
+    <End Role="Guns" Type="Self.Guns" Multiplicity="1" />
+    <End Role="Tanks" Type="Self.Tanks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guns">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tanks">
+        <PropertyRef Name="gun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tropheys_Leagues">
+    <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+    <End Role="Tropheys" Type="Self.Tropheys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Leagues">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tropheys">
+        <PropertyRef Name="league" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tropheys_Tank_Platoons">
+    <End Role="Tank_Platoons" Type="Self.Tank_Platoons" Multiplicity="1" />
+    <End Role="Tropheys" Type="Self.Tropheys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tank_Platoons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tropheys">
+        <PropertyRef Name="tank_platoon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TPlatoon2ModelStoreContainer">
+    <EntitySet Name="Guns" EntityType="Self.Guns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tank_Platoons" EntityType="Self.Tank_Platoons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tanks" EntityType="Self.Tanks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tropheys" EntityType="Self.Tropheys" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Players_Tank_Platoons" Association="Self.FK_Players_Tank_Platoons">
+      <End Role="Tank_Platoons" EntitySet="Tank_Platoons" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Tanks" Association="Self.FK_Players_Tanks">
+      <End Role="Tanks" EntitySet="Tanks" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tanks_Guns" Association="Self.FK_Tanks_Guns">
+      <End Role="Guns" EntitySet="Guns" />
+      <End Role="Tanks" EntitySet="Tanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tropheys_Leagues" Association="Self.FK_Tropheys_Leagues">
+      <End Role="Leagues" EntitySet="Leagues" />
+      <End Role="Tropheys" EntitySet="Tropheys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tropheys_Tank_Platoons" Association="Self.FK_Tropheys_Tank_Platoons">
+      <End Role="Tank_Platoons" EntitySet="Tank_Platoons" />
+      <End Role="Tropheys" EntitySet="Tropheys" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

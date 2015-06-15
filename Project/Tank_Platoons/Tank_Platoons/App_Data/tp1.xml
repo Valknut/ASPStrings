@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE tank_platoon SYSTEM "TPlatoon.dtd">
+<tank_platoon att_id_tp="tp1">
+  <name>xVm</name>
+  <nation>Германия</nation>
+  <rating>5</rating>
+  <personal_win_rate />50,21<tropheys><trophey att_id_trophey="t1" att_id_league="l2"><year>1999</year><place>3</place><league><league_name l_type="Професионална">WWOTF</league_name><league_country>Германия</league_country></league></trophey></tropheys><crew><member att_id_member="m1" gender="мъжки" att_platoon_pos="Капитан" strategic_position="Защитник"><first_name>Франц</first_name><last_name>Шуберт</last_name><age>21</age><date_of_birth><birth_year>1994</birth_year><day>19</day><month>12</month></date_of_birth><country>Германия</country><personal_win_rate colour="Зелен">53,21</personal_win_rate><nickname>shubacher</nickname><tank att_id_tank="ta1" type="Среден_танк" ammo_type="ББ"><tier>9</tier><tank_name>T-55A</tank_name><tank_nation>Немски</tank_nation><image>t55a.jpg</image><gun_penetration>201</gun_penetration><top_speed>50</top_speed></tank></member></crew></tank_platoon>

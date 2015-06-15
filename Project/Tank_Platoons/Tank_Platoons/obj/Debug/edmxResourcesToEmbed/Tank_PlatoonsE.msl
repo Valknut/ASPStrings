@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TPlatoon2ModelStoreContainer" CdmEntityContainer="TPlatoon2Entities1">
+    <EntitySetMapping Name="Guns">
+      <EntityTypeMapping TypeName="TPlatoon2Model.Guns">
+        <MappingFragment StoreEntitySet="Guns">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="gun_penetration" ColumnName="gun_penetration" />
+          <ScalarProperty Name="ammo_type" ColumnName="ammo_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leagues">
+      <EntityTypeMapping TypeName="TPlatoon2Model.Leagues">
+        <MappingFragment StoreEntitySet="Leagues">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="league_name" ColumnName="league_name" />
+          <ScalarProperty Name="league_type" ColumnName="league_type" />
+          <ScalarProperty Name="league_country" ColumnName="league_country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="TPlatoon2Model.Players">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="platoon_position" ColumnName="platoon_position" />
+          <ScalarProperty Name="g_strat_pos" ColumnName="g_strat_pos" />
+          <ScalarProperty Name="personal_win_rate" ColumnName="personal_win_rate" />
+          <ScalarProperty Name="tank" ColumnName="tank" />
+          <ScalarProperty Name="tank_platoon" ColumnName="tank_platoon" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="birth_year" ColumnName="birth_year" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="colour" ColumnName="colour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TPlatoon2Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tank_Platoons">
+      <EntityTypeMapping TypeName="TPlatoon2Model.Tank_Platoons">
+        <MappingFragment StoreEntitySet="Tank_Platoons">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="win_rate" ColumnName="win_rate" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="nation" ColumnName="nation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tanks">
+      <EntityTypeMapping TypeName="TPlatoon2Model.Tanks">
+        <MappingFragment StoreEntitySet="Tanks">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tank_name" ColumnName="tank_name" />
+          <ScalarProperty Name="tier" ColumnName="tier" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="top_speed" ColumnName="top_speed" />
+          <ScalarProperty Name="tank_nation" ColumnName="tank_nation" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="gun" ColumnName="gun" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tropheys">
+      <EntityTypeMapping TypeName="TPlatoon2Model.Tropheys">
+        <MappingFragment StoreEntitySet="Tropheys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="league" ColumnName="league" />
+          <ScalarProperty Name="tank_platoon" ColumnName="tank_platoon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

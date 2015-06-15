@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT tank_platoon (name,nation,rating,tropheys,crew,win_rate)>
+    <!ATTLIST tank_platoon att_id_tp ID #REQUIRED >
+    <!ELEMENT win_rate (#PCDATA) >
+    <!ELEMENT nation (#PCDATA) >
+    <!ELEMENT rating (#PCDATA)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT tropheys (trophey+)>
+        <!ELEMENT trophey (year,place,league)>
+            <!ATTLIST trophey att_id_trophey  ID #REQUIRED > 
+            <!ELEMENT year (#PCDATA)>
+            <!ELEMENT place (#PCDATA)>
+            <!ELEMENT league (league_name,league_country) >
+                <!ATTLIST league att_id_league ID #REQUIRED >
+                <!ELEMENT league_name (#PCDATA)>
+                    <!ATTLIST league_name l_type ( Професионална | Аматьорска ) #REQUIRED  >
+                <!ELEMENT league_country (#PCDATA) >    
+    <!ELEMENT crew (member+)>
+        <!ELEMENT member (first_name,last_name,nickname,age,date_of_birth,country,tank,personal_win_rate)>
+            <!ATTLIST member att_id_member  ID #REQUIRED >
+            <!ATTLIST member att_platoon_pos  CDATA #REQUIRED >
+            <!ATTLIST member strategic_position  (Светляк|Защитник|Нашественик|Снайперист|Артилерист) #REQUIRED >
+            <!ATTLIST member gender (мъжки | женски) #REQUIRED >
+            <!ELEMENT last_name (#PCDATA)>
+            <!ELEMENT first_name (#PCDATA)>
+            <!ELEMENT age (#PCDATA)>
+            <!ELEMENT date_of_birth (day,month,birth_year) >
+                <!ELEMENT birth_year (#PCDATA) >
+                <!ELEMENT day (#PCDATA) >
+                <!ELEMENT month (#PCDATA) >
+            <!ELEMENT country (#PCDATA)>
+            <!ELEMENT personal_win_rate (#PCDATA) >
+                <!ATTLIST personal_win_rate colour (Зелен | Жълт | Червен) #REQUIRED >
+            <!ELEMENT nickname (#PCDATA)>
+            <!ELEMENT tank (tier,tank_name,tank_nation,image,gun_penetration,top_speed)>
+                <!ATTLIST tank att_id_tank ID #REQUIRED >
+                <!ATTLIST tank type  (Тежък_танк|Среден_танк|Лек_танк|ПТ-САУ|САУ) #REQUIRED >  
+                <!ATTLIST tank ammo_type (ББ | БП | ОФ | КС | БОФ) #REQUIRED >
+                <!ELEMENT gun_penetration (#PCDATA) >
+                <!ELEMENT top_speed (#PCDATA) >
+                <!ELEMENT image (#PCDATA) >
+                <!ELEMENT tier (#PCDATA)>
+                <!ELEMENT tank_name (#PCDATA)>
+                <!ELEMENT tank_nation (#PCDATA)>
+
+
+
+

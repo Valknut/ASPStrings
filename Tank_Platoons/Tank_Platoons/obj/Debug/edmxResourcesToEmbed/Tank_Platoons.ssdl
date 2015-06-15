@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TPlatoonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Guns">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gun_penetration" Type="int" />
+    <Property Name="ammo_type" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="league_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="league_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="league_country" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="int" />
+    <Property Name="gender" Type="nchar" MaxLength="6" />
+    <Property Name="platoon_position" Type="nvarchar" MaxLength="50" />
+    <Property Name="g_strat_pos" Type="nvarchar" MaxLength="50" />
+    <Property Name="personal_win_rate" Type="float" />
+    <Property Name="tank" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tank_platoon" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="day" Type="int" />
+    <Property Name="month" Type="int" />
+    <Property Name="birth_year" Type="int" />
+    <Property Name="nickname" Type="nvarchar" MaxLength="50" />
+    <Property Name="country" Type="nvarchar" MaxLength="50" />
+    <Property Name="colour" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tank Platoons">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="win_rate" Type="float" />
+    <Property Name="rating" Type="int" />
+    <Property Name="nation" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tanks">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tank_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="tier" Type="int" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="top_speed" Type="float" />
+    <Property Name="tank_nation" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="nvarchar" MaxLength="50" />
+    <Property Name="gun" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tropheys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="year" Type="int" />
+    <Property Name="place" Type="int" />
+    <Property Name="league" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="tank_platoon" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Players_Tank Platoons">
+    <End Role="Tank Platoons" Type="Self.Tank Platoons" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tank Platoons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="tank_platoon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Tanks">
+    <End Role="Tanks" Type="Self.Tanks" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tanks">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="tank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tanks_Guns">
+    <End Role="Guns" Type="Self.Guns" Multiplicity="1" />
+    <End Role="Tanks" Type="Self.Tanks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guns">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tanks">
+        <PropertyRef Name="gun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tropheys_Leagues">
+    <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+    <End Role="Tropheys" Type="Self.Tropheys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Leagues">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tropheys">
+        <PropertyRef Name="league" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tropheys_Tank Platoons">
+    <End Role="Tank Platoons" Type="Self.Tank Platoons" Multiplicity="1" />
+    <End Role="Tropheys" Type="Self.Tropheys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tank Platoons">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Tropheys">
+        <PropertyRef Name="tank_platoon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="TPlatoonModelStoreContainer">
+    <EntitySet Name="Guns" EntityType="Self.Guns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tank Platoons" EntityType="Self.Tank Platoons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tanks" EntityType="Self.Tanks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tropheys" EntityType="Self.Tropheys" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Players_Tank Platoons" Association="Self.FK_Players_Tank Platoons">
+      <End Role="Tank Platoons" EntitySet="Tank Platoons" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Tanks" Association="Self.FK_Players_Tanks">
+      <End Role="Tanks" EntitySet="Tanks" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tanks_Guns" Association="Self.FK_Tanks_Guns">
+      <End Role="Guns" EntitySet="Guns" />
+      <End Role="Tanks" EntitySet="Tanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tropheys_Leagues" Association="Self.FK_Tropheys_Leagues">
+      <End Role="Leagues" EntitySet="Leagues" />
+      <End Role="Tropheys" EntitySet="Tropheys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tropheys_Tank Platoons" Association="Self.FK_Tropheys_Tank Platoons">
+      <End Role="Tank Platoons" EntitySet="Tank Platoons" />
+      <End Role="Tropheys" EntitySet="Tropheys" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
